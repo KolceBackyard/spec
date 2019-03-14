@@ -82,5 +82,5 @@ function logAssertions(assertionGroups) {
 
 // Check if all the assertions passed
 function checkAssertions (assertionGroups) {
-  return assertionGroups.flat().every(assertion => assertion.value === 'true') ? 0 : 1
+  return assertionGroups.some(group => group.assertions.some(assertion => assertion.value === 'false')) ? 1 : 0
 }
