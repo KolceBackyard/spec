@@ -1,0 +1,12 @@
+{
+  "name": "spec",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Testing Library for JavaScript using Specification Files",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js test"
+  },
+  "author": "James Kolce <contact@jameskolce.com",
+  "license": "MIT"
+}
