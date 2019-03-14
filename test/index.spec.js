@@ -5,7 +5,7 @@ module.exports = `
 
   Spec.js allows to test JavaScript programs using specification files.
 
-  Every *.spec.ts|js file exports a single template literal that includes a general
+  Every *.spec.js file exports a single template literal that includes a general
   explanation of the file being specified. Each file represents a logical
   component of a bigger system. Each logical component is composed of several
   units of functionality that can be tested for certain properties.
