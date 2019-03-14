@@ -32,7 +32,7 @@ function findSpecifications (dir, matchPattern, fileList = []) {
     const filePath = path.join(dir, file) // Get the full path
 
     fileList = fs.statSync(filePath).isDirectory() // Check if we are in a directory then
-      ? find(filePath, matchPattern, fileList) // Continue the recursion
+      ? findSpecifications(filePath, matchPattern, fileList) // Continue the recursion
       : fileList.concat(matchPattern.test(filePath) ? filePath : '') // Otherwise check if the file matches the pattern
   })
 
