@@ -11,7 +11,7 @@ const target = path.join(process.cwd(), process.argv[2])
 // Otherwise find all the specification files in the target directory
 const paths = specRegExp.test(target)
   ? [ target ]
-  : findSpecifications(target, specRegExp)
+  : findSpecifications(target, specRegExp).filter(x => x)
 
 // Get the content of each specification file
 // Get the assertions of each specification file
@@ -36,7 +36,7 @@ function findSpecifications (dir, matchPattern, fileList = []) {
       : fileList.concat(matchPattern.test(filePath) ? filePath : '') // Otherwise check if the file matches the pattern
   })
 
-  return fileList.filter(x => x) // Return the list of found files
+  return fileList // Return the list of found files
 }
 
 // Get the content of the specification files
