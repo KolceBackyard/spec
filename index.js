@@ -11,7 +11,7 @@ const target = path.join(process.cwd(), process.argv[2])
 // Otherwise find all the specification files in the target directory
 const paths = specRegExp.test(target)
   ? [ target ]
-  : findSpecifications(target, specRegExp).filter(x => x)
+  : findSpecifications(target, specRegExp)
 
 // Get the content of each specification file
 // Get the assertions of each specification file
@@ -27,16 +27,10 @@ process.exitCode = checkAssertions(assertionGroups)
 // Function definitions
 
 // Find all the specification files in the directory
-function findSpecifications (dir, matchPattern, fileList = []) {
-  fs.readdirSync(dir).forEach(file => {
-    const filePath = path.join(dir, file) // Get the full path
-
-    fileList = fs.statSync(filePath).isDirectory() // Check if we are in a directory then
-      ? findSpecifications(filePath, matchPattern, fileList) // Continue the recursion
-      : fileList.concat(matchPattern.test(filePath) ? filePath : '') // Otherwise check if the file matches the pattern
-  })
-
-  return fileList // Return the list of found files
+function findSpecifications (dir, matchPattern) {
+  return fs.readdirSync(dir)
+    .map(filePath => path.join(dir, filePath))
+    .filter(filePath => matchPattern.test(filePath) && fs.statSync(filePath).isFile())
 }
 
 // Get the content of the specification files
